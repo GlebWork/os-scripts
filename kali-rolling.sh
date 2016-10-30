@@ -916,7 +916,7 @@ grep -q '^eval "$(dircolors)"' "${file}" 2>/dev/null \
 grep -q "^alias ls='ls $LS_OPTIONS'" "${file}" 2>/dev/null \
   || echo "alias ls='ls $LS_OPTIONS'" >> "${file}"
 grep -q "^alias ll='ls $LS_OPTIONS -l'" "${file}" 2>/dev/null \
-  || echo "alias ll='ls $LS_OPTIONS -l'" >> "${file}"re
+  || echo "alias ll='ls $LS_OPTIONS -l'" >> "${file}"
 grep -q "^alias l='ls $LS_OPTIONS -lA'" "${file}" 2>/dev/null \
   || echo "alias l='ls $LS_OPTIONS -lA'" >> "${file}"
 #--- All other users that are made afterwards
