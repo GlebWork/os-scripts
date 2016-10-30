@@ -1186,27 +1186,6 @@ set -g display-time 3000
 ## Status bar is redrawn every minute
 set -g status-interval 60
 
-if [ 1 -eq 0 ]; then
-#-Theme------------------------------------------------------------------------
-## Default colours
-set -g status-bg black
-set -g status-fg white
-
-## Left hand side
-set -g status-left-length '34'
-set -g status-left '#[fg=green,bold]#(whoami)#[default]@#[fg=yellow,dim]#H #[fg=green,dim][#[fg=yellow]#(cut -d " " -f 1-3 /proc/loadavg)#[fg=green,dim]]'
-
-## Inactive windows in status bar
-set-window-option -g window-status-format '#[fg=red,dim]#I#[fg=grey,dim]:#[default,dim]#W#[fg=grey,dim]'
-
-## Current or active window in status bar
-#set-window-option -g window-status-current-format '#[bg=white,fg=red]#I#[bg=white,fg=grey]:#[bg=white,fg=black]#W#[fg=dim]#F'
-set-window-option -g window-status-current-format '#[fg=red,bold](#[fg=white,bold]#I#[fg=red,dim]:#[fg=white,bold]#W#[fg=red,bold])'
-
-## Right hand side
-set -g status-right '#[fg=green][#[fg=yellow]%Y-%m-%d #[fg=white]%H:%M#[fg=green]]'
-EOF
-fi
 
 #--- Setup alias
 file=~/.bash_aliases; [ -e "${file}" ] && cp -n $file{,.bkup}   #/etc/bash.bash_aliases
