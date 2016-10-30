@@ -1098,44 +1098,6 @@ source "${file}" || source ~/.zshrc
 #alias
 
 
-##### Install (GNOME) Terminator
-(( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing (GNOME) ${GREEN}Terminator${RESET} ~ multiple terminals in a single window"
-apt -y -qq install terminator \
-  || echo -e ' '${RED}'[!] Issue with apt install'${RESET} 1>&2
-#--- Configure terminator
-mkdir -p ~/.config/terminator/
-file=~/.config/terminator/config; [ -e "${file}" ] && cp -n $file{,.bkup}
-cat <<EOF > "${file}" \
-  || echo -e ' '${RED}'[!] Issue with writing file'${RESET} 1>&2
-[global_config]
-  enabled_plugins = TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
-[keybindings]
-[profiles]
-  [[default]]
-    background_darkness = 0.9
-    scroll_on_output = False
-    copy_on_selection = True
-    background_type = transparent
-    scrollback_infinite = True
-    show_titlebar = False
-[layouts]
-  [[default]]
-    [[[child1]]]
-      type = Terminal
-      parent = window0
-    [[[window0]]]
-      type = Window
-      parent = ""
-[plugins]
-EOF
-#--- Set terminator for XFCE's default
-mkdir -p ~/.config/xfce4/
-file=~/.config/xfce4/helpers.rc; [ -e "${file}" ] && cp -n $file{,.bkup}    #exo-preferred-applications   #xdg-mime default
-([[ -e "${file}" && "$(tail -c 1 ${file})" != "" ]]) && echo >> "${file}"
-sed -i 's_^TerminalEmulator=.*_TerminalEmulator=debian-x-terminal-emulator_' "${file}" 2>/dev/null \
-  || echo -e 'TerminalEmulator=debian-x-terminal-emulator' >> "${file}"
-
-
 ##### Install ZSH & Oh-My-ZSH - root user.   Note:  'Open terminal here', will not work with ZSH.   Make sure to have tmux already installed
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}ZSH${RESET} & ${GREEN}Oh-My-ZSH${RESET} ~ unix shell"
 apt -y -qq install zsh git curl \
